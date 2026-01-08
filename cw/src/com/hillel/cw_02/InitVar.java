@@ -31,7 +31,7 @@ public class InitVar {
 
         // var --> Double
 
-        System.out.println(f instanceof Long);
+//        System.out.println(f instanceof Long);
 
      }
 
