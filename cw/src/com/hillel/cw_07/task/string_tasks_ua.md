@@ -129,7 +129,7 @@ String convertNaming(String input, CaseStyle from, CaseStyle to);
 Підтримка стилів:
 
 - camelCase
-- snake\_case
+- snake_case
 - kebab-case
 
 ---
