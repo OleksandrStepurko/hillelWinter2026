@@ -1,0 +1,8 @@
+1_000_000 --> 1_100_000
+
+in the middle add 100_000 one by one
+
+AL? LL?
+
+AL -> find + add = O(1) + O(n) -> 0(n)
+LL -> find + add = 0(n) + O(1) -> 0(n)
