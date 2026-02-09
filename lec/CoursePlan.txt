@@ -12,8 +12,8 @@
 12 - Multithrading, Maven
 13 - Testing: jUnit, Mochito
 14 - Optional. StreamApi 1
-15 - Practice: BlackJack
-16 - StreamApi 2
+15 - StreamApi 2
+16 - Practice: BlackJack
 17 - StreamApi 3
 18 - JSON, YAML, XML, CSV, prorbuf
 19 - Practice: File Converter
