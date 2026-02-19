@@ -1,0 +1,9 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+JavaTests,com.hillel.tests,Calc,0,16,0,0,0,4,0,4,0,4
+JavaTests,com.hillel.tests.user,UserValidator,79,0,14,0,18,0,10,0,3,0
+JavaTests,com.hillel.tests.user,User,0,3,0,0,0,1,0,1,0,1
+JavaTests,com.hillel.tests.user,UserCalculate,0,12,0,0,0,3,0,2,0,2
+JavaTests,com.hillel.tests.user.exceptions,AgeException,11,0,0,0,2,0,1,0,1,0
+JavaTests,com.hillel.tests.user.exceptions,EmailException,4,0,0,0,2,0,1,0,1,0
+JavaTests,com.hillel.tests.user.exceptions,PhoneValidationException,4,0,0,0,2,0,1,0,1,0
+JavaTests,com.hillel.tests.collection,Collection,118,131,19,15,24,29,15,12,3,7

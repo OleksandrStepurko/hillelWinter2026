@@ -1,0 +1,8 @@
+com/hillel/tests/user/User.class
+com/hillel/tests/Calc.class
+com/hillel/tests/user/UserValidator.class
+com/hillel/tests/user/exceptions/EmailException.class
+com/hillel/tests/user/exceptions/PhoneValidationException.class
+com/hillel/tests/collection/Collection.class
+com/hillel/tests/user/exceptions/AgeException.class
+com/hillel/tests/user/UserCalculate.class

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="uk"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Collection.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JavaTests</a> &gt; <a href="index.source.html" class="el_package">com.hillel.tests.collection</a> &gt; <span class="el_source">Collection.java</span></div><h1>Collection.java</h1><pre class="source lang-java linenums">package com.hillel.tests.collection;
+
+public class Collection {
+
+    private String[] array;
+    private int size;
+
+<span class="fc" id="L8">    public Collection() {</span>
+<span class="fc" id="L9">        this.array = new String[10];</span>
+<span class="fc" id="L10">        this.size = 0;</span>
+<span class="fc" id="L11">    }</span>
+
+    public boolean add(String o) {
+<span class="pc bpc" id="L14" title="1 of 2 branches missed.">        if (size == array.length) {</span>
+<span class="nc" id="L15">            increaseArraySize();</span>
+        }
+<span class="fc" id="L17">        array[size] = o;</span>
+<span class="fc" id="L18">        size++;</span>
+<span class="fc" id="L19">        return true;</span>
+    }
+
+    public boolean add(int index, String o) {
+<span class="fc bfc" id="L23" title="All 4 branches covered.">        if (index &gt; size || index &lt; 0) {</span>
+<span class="fc" id="L24">            return false;</span>
+        }
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        if (size == array.length) {</span>
+<span class="nc" id="L27">            increaseArraySize();</span>
+        }
+<span class="fc" id="L29">        System.arraycopy(array, index, array, index + 1, size - index);</span>
+<span class="fc" id="L30">        array[index] = o;</span>
+<span class="fc" id="L31">        size++;</span>
+<span class="fc" id="L32">        return true;</span>
+    }
+
+    public boolean delete(String o) {
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        for (int i = 0; i &lt; size; i++) {</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            if (array[i].equals(o)) {</span>
+<span class="nc" id="L38">                System.arraycopy(array, i + 1, array, i, size - i - 1);</span>
+<span class="nc" id="L39">                array[--size] = null;</span>
+<span class="nc" id="L40">                return true;</span>
+            }
+        }
+<span class="nc" id="L43">        return false;</span>
+    }
+
+    public String get(int index) {
+<span class="pc bpc" id="L47" title="2 of 4 branches missed.">        if (index &gt;= size || index &lt; 0) {</span>
+<span class="nc" id="L48">            throw new IndexOutOfBoundsException(&quot;Index: &quot; + index + &quot;, Size: &quot; + size);</span>
+        }
+<span class="fc" id="L50">        return array[index];</span>
+    }
+
+    public boolean contain(String o) {
+<span class="pc bfc" id="L54" title="All 2 branches covered.">        for (int i = 0; i &lt; size; i++) {</span>
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">            if (array[i].equals(o)) {</span>
+<span class="fc" id="L56">                return true;</span>
+            }
+        }
+<span class="fc" id="L59">        return false;</span>
+    }
+
+    public boolean equals(Collection collection) {
+<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (collection == null) {</span>
+<span class="nc" id="L64">            return false;</span>
+        }
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        if (!(collection instanceof Collection)) {</span>
+<span class="nc" id="L67">            return false;</span>
+        }
+<span class="nc" id="L69">        Collection other = (Collection) collection;</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (this.size != other.size) {</span>
+<span class="nc" id="L71">            return false;</span>
+        }
+<span class="nc bnc" id="L73" title="All 2 branches missed.">        for (int i = 0; i &lt; this.size; i++) {</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">            if (!this.array[i].equals(other.array[i])) {</span>
+<span class="nc" id="L75">                return false;</span>
+            }
+        }
+<span class="nc" id="L78">        return true;</span>
+    }
+
+    public boolean clear() {
+<span class="fc" id="L82">        array = new String[10];</span>
+<span class="fc" id="L83">        size = 0;</span>
+<span class="fc" id="L84">        return true;</span>
+    }
+
+    public int size() {
+<span class="fc" id="L88">        int count = 0;</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">        for (String element : array) {</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">            if (element != null) {</span>
+<span class="fc" id="L91">                count++;</span>
+            }
+        }
+<span class="fc" id="L94">        return count;</span>
+    }
+
+    private void increaseArraySize() {
+<span class="nc" id="L98">        String[] newArray = new String[array.length * 2];</span>
+<span class="nc" id="L99">        System.arraycopy(array, 0, newArray, 0, size);</span>
+<span class="nc" id="L100">        array = newArray;</span>
+<span class="nc" id="L101">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

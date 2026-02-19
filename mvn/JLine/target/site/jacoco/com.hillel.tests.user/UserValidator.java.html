@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="uk"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserValidator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JavaTests</a> &gt; <a href="index.source.html" class="el_package">com.hillel.tests.user</a> &gt; <span class="el_source">UserValidator.java</span></div><h1>UserValidator.java</h1><pre class="source lang-java linenums">package com.hillel.tests.user;
+
+
+import com.hillel.tests.user.exceptions.AgeException;
+import com.hillel.tests.user.exceptions.EmailException;
+import com.hillel.tests.user.exceptions.PhoneValidationException;
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="nc" id="L10">public class UserValidator {</span>
+
+    public void validate(User user) throws AgeException, EmailException, PhoneValidationException {
+<span class="nc bnc" id="L13" title="All 2 branches missed.">        if (!user.getEmail().contains(&quot;@&quot;)){</span>
+<span class="nc" id="L14">            throw new EmailException(&quot;email not valid ...&quot;);</span>
+        }
+
+<span class="nc bnc" id="L17" title="All 2 branches missed.">        if (user.getAge() &lt; 18) {</span>
+<span class="nc" id="L18">            throw new AgeException(user.getAge().toString());</span>
+        }
+
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        if (!user.getPhone().toLowerCase().startsWith(&quot;+380&quot;)){</span>
+<span class="nc" id="L22">            throw new PhoneValidationException(&quot;incorrect country phone prefix&quot;);</span>
+        }
+<span class="nc" id="L24">    }</span>
+
+    void valid(User user){
+<span class="nc" id="L27">        List&lt;String&gt; errors = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L29" title="All 2 branches missed.">        if (!user.getEmail().contains(&quot;@&quot;)){</span>
+<span class="nc" id="L30">            errors.add(&quot;E001&quot;);</span>
+        }
+
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (user.getAge() &lt; 18) {</span>
+<span class="nc" id="L34">            errors.add(&quot;E002&quot;);</span>
+        }
+
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if (!user.getPhone().toLowerCase().startsWith(&quot;+380&quot;)){</span>
+<span class="nc" id="L38">            errors.add(&quot;E003&quot;);</span>
+        }
+
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (!errors.isEmpty())</span>
+<span class="nc" id="L42">            throw new RuntimeException(errors.toString());</span>
+
+<span class="nc" id="L44">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
