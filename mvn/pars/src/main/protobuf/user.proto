@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package com.pars.protobuf;
+
+option java_package = "com.pars.protobuf";
+option java_outer_classname = "UserProto";
+
+message User {
+  int32 id = 1;
+  string fullname = 5;
+  string email = 6;
+}
