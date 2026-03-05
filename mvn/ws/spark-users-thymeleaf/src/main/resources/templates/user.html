@@ -39,7 +39,7 @@
 <!-- Create/Edit form -->
 <section th:if="${mode != null}">
     <h1 th:text="${mode == 'create' ? 'Add User' : 'Edit User'}">Form</h1>
-    <form th:action="${mode == 'create'} ? '/ui/users' : '/ui/users/' + user.id + '/edit'" method="post">
+    <form th:action="${mode == 'create'} ? '/ui/users' : '/ui/users/' + ${user.id} + '/edit'" method="post">
         <div class="row">
             <div class="field" style="flex:1;">
                 <label for="firstName">First name</label>
