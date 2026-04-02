@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog logicalFilePath="db.changelog-1.0.xml"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+<changeSet id="create-tavlr-and-seed-cars" author="olexandr">
+
+    <!-- 1. Create table -->
+    <createTable tableName="tavlr">
+        <column name="id" type="BIGINT" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="brand" type="VARCHAR(100)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="model" type="VARCHAR(100)">
+            <constraints nullable="false"/>
+        </column>
+        <column name="year" type="INT"/>
+        <column name="price" type="DECIMAL(10,2)"/>
+    </createTable>
+
+    <!-- 2. Insert 15 records -->
+    <insert tableName="tavlr">
+        <column name="brand" value="Toyota"/>
+        <column name="model" value="Camry"/>
+        <column name="year" valueNumeric="2020"/>
+        <column name="price" valueNumeric="24000"/>
+    </insert>
+
+    <insert tableName="tavlr">
+        <column name="brand" value="Honda"/>
+        <column name="model" value="Civic"/>
+        <column name="year" valueNumeric="2019"/>
+        <column name="price" valueNumeric="20000"/>
+    </insert>
+
+    <insert tableName="tavlr">
+        <column name="brand" value="BMW"/>
+        <column name="model" value="X5"/>
+        <column name="year" valueNumeric="2021"/>
+        <column name="price" valueNumeric="55000"/>
+    </insert>
+
+    <insert tableName="tavlr">
+        <column name="brand" value="Audi"/>
+        <column name="model" value="A4"/>
+        <column name="year" valueNumeric="2020"/>
+        <column name="price" valueNumeric="40000"/>
+    </insert>
+
+    <insert tableName="tavlr">
+        <column name="brand" value="Mercedes"/>
+        <column name="model" value="C-Class"/>
+        <column name="year" valueNumeric="2021"/>
+        <column name="price" valueNumeric="42000"/>
+    </insert>
+
+    <insert tableName="tavlr">
+        <column name="brand" value="Ford"/>
+        <column name="model" value="Focus"/>
+        <column name="year" valueNumeric="2018"/>
+        <column name="price" valueNumeric="18000"/>
+    </insert>
+
+    <insert tableName="tavlr">
+        <column name="brand" value="Chevrolet"/>
+        <column name="model" value="Malibu"/>
+        <column name="year" valueNumeric="2019"/>
+        <column name="price" valueNumeric="22000"/>
+    </insert>
+
+    <insert tableName="tavlr">
+        <column name="brand" value="Nissan"/>
+        <column name="model" value="Altima"/>
+        <column name="year" valueNumeric="2020"/>
+        <column name="price" valueNumeric="23000"/>
+    </insert>
+
+    <insert tableName="tavlr">
+        <column name="brand" value="Hyundai"/>
+        <column name="model" value="Elantra"/>
+        <column name="year" valueNumeric="2021"/>
+        <column name="price" valueNumeric="21000"/>
+    </insert>
+
+    <insert tableName="tavlr">
+        <column name="brand" value="Kia"/>
+        <column name="model" value="Optima"/>
+        <column name="year" valueNumeric="2020"/>
+        <column name="price" valueNumeric="21500"/>
+    </insert>
+
+    <insert tableName="tavlr">
+        <column name="brand" value="Volkswagen"/>
+        <column name="model" value="Passat"/>
+        <column name="year" valueNumeric="2019"/>
+        <column name="price" valueNumeric="25000"/>
+    </insert>
+
+    <insert tableName="tavlr">
+        <column name="brand" value="Mazda"/>
+        <column name="model" value="Mazda6"/>
+        <column name="year" valueNumeric="2021"/>
+        <column name="price" valueNumeric="26000"/>
+    </insert>
+
+    <insert tableName="tavlr">
+        <column name="brand" value="Subaru"/>
+        <column name="model" value="Impreza"/>
+        <column name="year" valueNumeric="2018"/>
+        <column name="price" valueNumeric="19500"/>
+    </insert>
+
+    <insert tableName="tavlr">
+        <column name="brand" value="Tesla"/>
+        <column name="model" value="Model 3"/>
+        <column name="year" valueNumeric="2022"/>
+        <column name="price" valueNumeric="45000"/>
+    </insert>
+
+    <insert tableName="tavlr">
+        <column name="brand" value="Volvo"/>
+        <column name="model" value="S60"/>
+        <column name="year" valueNumeric="2021"/>
+        <column name="price" valueNumeric="39000"/>
+    </insert>
+
+</changeSet>
+</databaseChangeLog>
