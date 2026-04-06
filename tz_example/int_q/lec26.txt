@@ -1,0 +1,5 @@
+1. Відмінності String/StringBuilder/StringBuffer
+2. Interface vs Abstract Class
+3. override vs overload
+4. Регіони пам'яті в JVM
+5. java.util.collection.

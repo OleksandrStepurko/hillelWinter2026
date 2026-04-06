@@ -1,0 +1,5 @@
+1. У чому різниця між try-with-resources та try-catch-finally під час роботи з ресурсами?
+2. this vs super
+3. Які засоби створення об'єкта String? Де воно створюється?
+4. Дайте коротку характеристику Enum Java.
+5. final - finally - finalize
