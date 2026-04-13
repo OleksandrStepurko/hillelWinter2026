@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenAPI Ping UI</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.2;
+    }
+
+    .subtext {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #475569;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 16px;
+      background: #f1f5f9;
+      color: #334155;
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+    }
+
+    .method-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .method {
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: #dcfce7;
+      color: #15803d;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    code {
+      font-family: Consolas, Monaco, monospace;
+    }
+
+    .path {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      margin: 0 0 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .section-text {
+      margin: 0;
+      font-size: 14px;
+      color: #475569;
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .tag {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .response-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .input-label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 16px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .input:focus {
+      border-color: #475569;
+    }
+
+    .button {
+      width: 100%;
+      border: none;
+      border-radius: 16px;
+      padding: 14px 16px;
+      background: #0f172a;
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+      margin-top: 16px;
+    }
+
+    .button:hover {
+      opacity: 0.92;
+    }
+
+    .button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .result-title {
+      margin: 24px 0 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .result-box {
+      min-height: 180px;
+      background: #020617;
+      color: #e2e8f0;
+      border-radius: 18px;
+      padding: 16px;
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .placeholder {
+      color: #94a3b8;
+    }
+
+    .error {
+      color: #fca5a5;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="container">
+    <div class="card" style="margin-bottom: 24px;">
+      <div class="header">
+        <div>
+          <p class="eyebrow">API UI</p>
+          <h1 id="api-title"></h1>
+          <p class="subtext" id="api-version"></p>
+        </div>
+        <div class="badge" id="api-openapi-version"></div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="method-row">
+          <span class="method" id="http-method"></span>
+          <code class="path" id="endpoint-path"></code>
+        </div>
+
+        <div class="section">
+          <p class="section-title">Operation ID</p>
+          <p class="section-text" id="operation-id"></p>
+        </div>
+
+        <div class="section">
+          <p class="section-title">Tags</p>
+          <div class="tags" id="tags"></div>
+        </div>
+
+        <div class="section">
+          <p class="section-title">Response</p>
+          <div class="response-box">
+            <p class="section-text"><strong id="response-code"></strong> — <span id="response-description"></span></p>
+            <p class="section-text" style="margin-top: 8px;">Content type: <code id="response-content-type"></code></p>
+            <p class="section-text">Schema: <code id="response-schema"></code></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 style="margin: 0; font-size: 24px;">Try it out</h2>
+        <p class="subtext">Call the endpoint directly from the browser.</p>
+
+        <div style="margin-top: 20px;">
+          <label class="input-label" for="server-url">Server URL</label>
+          <input id="server-url" class="input" placeholder="http://localhost:8081" />
+          <button id="send-btn" class="button">Send GET Request</button>
+        </div>
+
+        <p class="result-title">Result</p>
+        <div id="result" class="result-box"><span class="placeholder">No response yet.</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const openApi = {
+    openapi: '3.0.1',
+    info: {
+      title: 'OpenAPI definition',
+      version: 'v0'
+    },
+    servers: [
+      {
+        url: 'http://localhost:8081',
+        description: 'Generated server url'
+      }
+    ],
+    paths: {
+      '/api/v1/ping': {
+        get: {
+          tags: ['test-controller'],
+          operationId: 'ping',
+          responses: {
+            200: {
+              description: 'OK',
+              content: {
+                '*/*': {
+                  schema: {
+                    type: 'string'
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  };
+
+  const endpointPath = '/api/v1/ping';
+  const method = 'get';
+  const endpoint = openApi.paths[endpointPath][method];
+  const response200 = endpoint.responses[200];
+  const contentType = Object.keys(response200.content)[0];
+
+  document.getElementById('api-title').textContent = openApi.info.title;
+  document.getElementById('api-version').textContent = `Version: ${openApi.info.version}`;
+  document.getElementById('api-openapi-version').textContent = openApi.openapi;
+  document.getElementById('http-method').textContent = method.toUpperCase();
+  document.getElementById('endpoint-path').textContent = endpointPath;
+  document.getElementById('operation-id').textContent = endpoint.operationId;
+  document.getElementById('response-code').textContent = '200';
+  document.getElementById('response-description').textContent = response200.description;
+  document.getElementById('response-content-type').textContent = contentType;
+  document.getElementById('response-schema').textContent = response200.content[contentType].schema.type;
+
+  const tagsContainer = document.getElementById('tags');
+  endpoint.tags.forEach(tag => {
+    const tagEl = document.createElement('span');
+    tagEl.className = 'tag';
+    tagEl.textContent = tag;
+    tagsContainer.appendChild(tagEl);
+  });
+
+  const serverUrlInput = document.getElementById('server-url');
+  const sendBtn = document.getElementById('send-btn');
+  const resultBox = document.getElementById('result');
+
+  serverUrlInput.value = openApi.servers[0].url;
+
+  async function sendRequest() {
+    const baseUrl = serverUrlInput.value.trim();
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Sending...';
+    resultBox.innerHTML = '<span class="placeholder">Loading...</span>';
+
+    try {
+      const response = await fetch(`${baseUrl}${endpointPath}`, {
+        method: method.toUpperCase()
+      });
+
+      const text = await response.text();
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${text || 'Request failed'}`);
+      }
+
+      resultBox.textContent = text || '(empty response)';
+    } catch (error) {
+      resultBox.innerHTML = `<span class="error">${error.message || 'Unknown error'}</span>`;
+    } finally {
+      sendBtn.disabled = false;
+      sendBtn.textContent = 'Send GET Request';
+    }
+  }
+
+  sendBtn.addEventListener('click', sendRequest);
+</script>
+</body>
+</html>
