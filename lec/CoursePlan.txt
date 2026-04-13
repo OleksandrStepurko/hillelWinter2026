@@ -29,7 +29,7 @@
 29 - ORM: hibernate
 30 - Spring core
 31 - Spring boot
-32 - Sprign data
+32 - Spring data
 33 - Hackaton
 34 - Docker
 35 - Cache
