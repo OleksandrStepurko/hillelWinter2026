@@ -1,0 +1,5 @@
+1. Як організовано HashMap
+2. Чим відрізняються LinkedList та ArrayList
+3. SQL: where vs having
+4. Time / Space complexity
+5. Проміжні та термінальні операції в Stream API
