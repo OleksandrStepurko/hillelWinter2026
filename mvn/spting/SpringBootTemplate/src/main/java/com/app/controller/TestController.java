@@ -1,5 +1,8 @@
 package com.app.controller;
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TestController {
 
+    private final Counter getPingCounter;
+
+    public TestController(MeterRegistry  meterRegistry) {
+        this.getPingCounter = Counter.builder("api_ping_calls")
+            .description("Namber of GET calls api : /api/va/ping")
+            .tag("endpoint", "/api/va/ping")
+            .tag("method", "get")
+            .register(meterRegistry);
+    }
+
     @GetMapping("/ping")
     public String ping() {
+        getPingCounter.increment();
         return "work - OK";
     }
 }
