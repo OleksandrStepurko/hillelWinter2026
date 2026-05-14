@@ -1,4 +1,4 @@
-package com.hillel.lec_34.ex;
+package com.hillel.cw_34.ex;
 
 public class Test1 {
     public static void main(String[] args) {

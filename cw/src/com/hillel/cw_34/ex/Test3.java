@@ -1,4 +1,4 @@
-package com.hillel.lec_34.ex;
+package com.hillel.cw_34.ex;
 
 import java.util.HashSet;
 import java.util.Set;
